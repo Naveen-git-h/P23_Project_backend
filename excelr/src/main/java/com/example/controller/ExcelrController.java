@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.model.Login;
 import com.example.repo.LoginRepo;
 import com.example.service.ExcelrService;
+import com.example.util.JwtUtil;
 
 
 @RestController
@@ -23,6 +24,10 @@ public class ExcelrController {
 	
 	@Autowired
     private LoginRepo loginRepo; 
+	
+	
+	@Autowired
+	private JwtUtil jwtUtil;
 	
 	@Autowired
 	private ExcelrService excelrService;
@@ -36,11 +41,11 @@ public class ExcelrController {
 		
 		if (login.isPresent() && login.get().getPassword().equals(password)) {
 			
-//			String token = jwtUtil.generateToken(username);
+		String token = jwtUtil.generateToken(username);
 			
 			Map<String, String> response = new HashMap<>(); 
 			response.put("login", "success");
-//			response.put("token", token);
+			response.put("token", token);
 			response.put("role", login.get().getRole());
 			return ResponseEntity.ok(response);
 		}
