@@ -27,6 +27,9 @@ public class ExcelrController {
 	@Autowired
 	private ExcelrService excelrService;
      
+	
+	//login
+	
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> loginData){
 		String username = loginData.get("username");
@@ -50,7 +53,9 @@ public class ExcelrController {
 		return ResponseEntity.status(401).body(response);
 	}
 	
+	
 	 //Register
+	
     @PostMapping("/register")
     public Login register(@RequestBody Login login) {
     	return excelrService.saveUser(login);
