@@ -34,7 +34,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/logout").permitAll()
+                .requestMatchers("/login").permitAll()
                 //.requestMatchers("/admin/").hasRole("ADMIN") // Admin-specific endpoints
                 //.requestMatchers("/user/").hasRole("USER") // User-specific endpoints
                 .anyRequest().authenticated()
